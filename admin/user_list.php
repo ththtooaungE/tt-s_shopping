@@ -84,12 +84,9 @@
                   </thead>
                   <tbody>
                     <?php
-                    // print"<pre>";
-                    // print_r($users);
                     if ($users) {
                       $i = 1;
-                      foreach ($users as $user) {
-                        ?>
+                      foreach ($users as $user) { ?>
                         <tr>
                           <td><?= $i.'.' ?></td>
                           <td><?= escape($user['name']) ?></td>
