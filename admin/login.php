@@ -4,23 +4,29 @@ require "../config/config.php";
 require "../config/common.php";
 
 if ($_POST) {
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE email=:email");
+  if (empty($_POST['email']) || empty($_POST['password'])) {
+    if (empty($_POST['email'])) $emailError = "This field is required!";
+    if (empty($_POST['password'])) $passwordError = "This field is required!";
 
-  $stmt->bindValue(':email',$_POST['email']);
-  $stmt->execute();
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+  } else {
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email=:email");
 
-  if($user) {
-    if (password_verify($_POST['password'],$user['password']) && !empty($user['role'])) {
-      $_SESSION['user_id'] = $user['id'];
-      $_SESSION['user_name'] = $user['name'];
-      $_SESSION['role'] = 1;
-      $_SESSION['logged_in'] = time();
+    $stmt->bindValue(':email',$_POST['email']);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      header('Location: index.php');
+    if($user) {
+      if (password_verify($_POST['password'],$user['password']) && !empty($user['role'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_name'] = $user['name'];
+        $_SESSION['role'] = 1;
+        $_SESSION['logged_in'] = time();
+
+        header('Location: index.php');
+      }
     }
+    echo "<script>alert('Incorrect credentials');</script>";
   }
-  echo "<script>alert('Incorrect credentials');</script>";
 }
  ?>
 
