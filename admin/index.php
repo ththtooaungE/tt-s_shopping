@@ -22,7 +22,7 @@
   else $page_num = 1;
   $records_per_page = 4;
 
-  if (!empty($_POST['search'])) {
+  if (!empty($_POST['search']) || !empty($_COOKIE['search'])) {
     $search = $_COOKIE['search'] ?? $_POST['search'];
 
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM products WHERE name LIKE CONCAT('%', :search, '%')");
