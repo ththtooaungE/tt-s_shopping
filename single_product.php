@@ -58,12 +58,20 @@
 				<div class="container">
 					<a class="navbar-brand logo_h" href="index.php"><h3 class="h3">AP Shopping<h3></a>
 					<!-- Collect the nav links, forms, and other content for toggling -->
+					<?php
+					if (!empty($_SESSION['cart'])) {
+						$cart = 0;
+						foreach ($_SESSION['cart'] as $item) {
+							$cart += $item;
+						}
+					}
+					 ?>
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
 						</ul>
 						<ul class="	nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="cart.php" class="cart"><span class="ti-bag"><?= $cart ?? '' ?></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>
@@ -115,16 +123,22 @@
 						</ul>
 						<p><?= escape($product['description']) ?></p>
 						<div class="product_count">
-							<label for="qty">Quantity:</label>
-							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+							<form class="" action="addtocart.php" method="post">
+								<input type="hidden" name="_token" value="<?php echo $_SESSION['_token'] ?>">
+								<input type="hidden" name="id" value="<?= escape($product['id']) ?>">
+								<label for="qty">Quantity:</label>
+								<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+								<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+								 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+								<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+								 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+								 <div class="card_area d-flex align-items-center mt-4">
+									<input type="submit" class="primary-btn" style="width:200px" name="" value="Add to Cart">
+		 							<a class="primary-btn" href="index.php">Back</a>
+		 						</div>
+							</form>
 						</div>
-						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="#">Add to Cart</a>
-						</div>
+
 					</div>
 				</div>
 			</div>

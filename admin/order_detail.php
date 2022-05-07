@@ -50,7 +50,7 @@
                         <tr>
                           <td><?= $i.'.' ?></td>
                           <td><?= escape($product[0]['name']) ?></td>
-                          <td><?= escape($product[0]['price']) ?></td>
+                          <td><?= escape($product[0]['price']) ?> MMK</td>
                           <td><?= date('d/m/Y', strtotime($order_detail['order_date'])) ?></td>
                         </tr>
                         <?php

@@ -65,7 +65,7 @@
                         <tr>
                           <td><?= $i.'.' ?></td>
                           <td><?= escape($user[0]['name']) ?></td>
-                          <td><?= escape($order['total_price']) ?></td>
+                          <td><?= escape($order['total_price']) ?> MMK</td>
                           <td><?= date('d/m/Y', strtotime($order['order_date'])) ?></td>
                           <td><a href="order_detail.php?id=<?= $order['id'] ?>&page_num=<?= $page_num ?>" type="button" class="btn btn-warning">View</a></td>
                         </tr>

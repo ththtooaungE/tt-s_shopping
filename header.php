@@ -39,11 +39,18 @@
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<a class="navbar-brand logo_h" href="index.php"><h3 class="h3">AP Shopping<h3></a>
-
+					<?php
+					if (!empty($_SESSION['cart'])) {
+						$cart = 0;
+						foreach ($_SESSION['cart'] as $item) {
+							$cart += $item;
+						}
+					}
+					 ?>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item" style="padding:0 0 20px 0"><a href="cart.php" class="cart"><span class="ti-bag"><?= $cart ?? '' ?></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>

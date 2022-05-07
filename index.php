@@ -111,9 +111,10 @@
 						<?php
 						foreach ($products as $product) {
 							?>
+
 							<div class="col-lg-4 col-md-6">
 								<div class="single-product">
-									<a href="single-product.php?id=<?= $product['id'] ?>">
+									<a href="single_product.php?id=<?= $product['id'] ?>&page_num=<?= $page_num ?>">
 										<img class="img-fluid" style="height:250px;width:230px;object-fit: cover" src="admin/image/<?= escape($product['image']) ?>" alt="">
 									</a>
 									<div class="product-details">
@@ -123,14 +124,21 @@
 										</div>
 										<div class="prd-bottom">
 
-											<a href="" class="social-info">
-												<span class="ti-bag"></span>
-												<p class="hover-text">add to bag</p>
-											</a>
-											<a href="" class="social-info">
-												<span class="lnr lnr-move"></span>
-												<p class="hover-text">view more</p>
-											</a>
+											<form action="addtocart.php" method="post">
+												<input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
+												<input type="hidden" name="id" value="<?php echo $product['id'] ?>">
+												<input type="hidden" name="qty" value="1">
+													<div class="social-info">
+														<button type="submit" style="display:contents" class="social-info">
+															<span class="ti-bag"></span>
+															<p class="hover-text" style="left:20px">add to bag</p>
+														</button>
+													</div>
+													<a href="single_product.php?id=<?= $product['id'] ?>&page_num=<?= $page_num ?>" class="social-info">
+														<span class="lnr lnr-move"></span>
+														<p class="hover-text">view more</p>
+													</a>
+											</form>
 										</div>
 									</div>
 								</div>

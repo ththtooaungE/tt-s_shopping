@@ -6,7 +6,10 @@ Admin panal(
   -user module
   -category module
   -product module
-  -order module)
-Customer panal("I'll update soon")
+  -order module
+  -login/register)
+Customer panal(
+  -home page
+  -single product page)
 
 To feel more real and have more sense, I used some product names and some pictures from highculturemm.com(shopping brand)
