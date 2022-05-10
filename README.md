@@ -1,5 +1,5 @@
 # tt-s_shopping
-This is the shopping prototype project from the extensive PHP class.
+This is the shopping prototype project from the extensive PHP class of A PROGRAMMER and pure PHP project.
 In this class project, there are two main parts.
 
 Admin panal(
@@ -21,13 +21,20 @@ Admin panal(
     3.product_edit.php
     4.product_delete.php
     
-  -PRDER module
+  -ORDER module
     1.order_list.php
     2.order_detail.php
+    
+  -REPORTING
+    1.weekly_report.php
+    2.monthly_report.php
+    3.loyal_customer.php
+    4.best_seller_items.php
   
   -LOGIN/REGISTER
     1.login.php
     2.register.php
+    30.logout.php
     
   1.header.php
   2.footer.php)
