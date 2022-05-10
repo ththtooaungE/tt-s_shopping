@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -119,6 +120,41 @@
                 Orders
               </p>
             </a>
+          </li>
+          <li class="nav-item menu-close">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Reporting
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="Weekly_report.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Weekly Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="monthly_report.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Monthly Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="loyal_customer.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Loyal Customers</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="best_seller_item.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Best Seller items</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
         </ul>

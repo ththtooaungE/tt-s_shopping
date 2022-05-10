@@ -8,7 +8,7 @@
 		header("Location: login.php");
 	}
 
-	if ($_SESSION['cart']) {
+	if (!empty($_SESSION['cart'])) {
 		$total_price = 0;
 
 		$stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
@@ -136,7 +136,9 @@
 		</div>
 	</section>
 	<!--================End Order Details Area =================-->
-
+	<div class="">
+	 <a href="logout.php"><button type="button" name="button" class="primary-btn" style="border:0;margin-bottom:5px">Logout</button></a>
+	</div>
 	<!-- start footer Area -->
 	<footer>
 	  <div class="">

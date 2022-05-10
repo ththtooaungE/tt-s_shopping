@@ -40,8 +40,8 @@
 	    $total_pages = ceil($total_records/$records_per_page);
 	    $offsetnum = ($page_num - 1) * $records_per_page;
 
-	    $stmt = $pdo->prepare("SELECT * FROM products WHERE name LIKE CONCAT('%', :search, '%')
-			OR description LIKE CONCAT('%', :search, '%') ORDER BY id DESC LIMIT :offsetnum, :recordsperpage");
+	    $stmt = $pdo->prepare("SELECT * FROM products WHERE (name LIKE CONCAT('%', :search, '%')
+			OR description LIKE CONCAT('%', :search, '%')) AND NOT quantity = 0 ORDER BY id DESC LIMIT :offsetnum, :recordsperpage");
 	    $stmt->bindValue(':search', $search, PDO::PARAM_STR);
 	    $stmt->bindValue(':offsetnum', $offsetnum, PDO::PARAM_INT);
 	    $stmt->bindValue(':recordsperpage', $records_per_page, PDO::PARAM_INT);
@@ -49,15 +49,15 @@
 	    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	  } else {
-
-	    $stmt = $pdo->prepare("SELECT COUNT(*) FROM products");
+//not search
+	    $stmt = $pdo->prepare("SELECT COUNT(*) FROM products WHERE NOT quantity = 0");
 	    $stmt->execute();
 	    $total_records = $stmt->fetchColumn();
 
 	    $total_pages = ceil($total_records/$records_per_page);
 	    $offsetnum = ($page_num - 1) * $records_per_page;
 
-	    $stmt = $pdo->prepare("SELECT * FROM products ORDER BY id DESC LIMIT :offsetnum, :recordsperpage");
+	    $stmt = $pdo->prepare("SELECT * FROM products WHERE NOT quantity = 0 ORDER BY id DESC LIMIT :offsetnum, :recordsperpage");
 	    $stmt->bindValue(':offsetnum', $offsetnum, PDO::PARAM_INT);
 	    $stmt->bindValue(':recordsperpage', $records_per_page, PDO::PARAM_INT);
 	    $stmt->execute();
@@ -66,19 +66,22 @@
 	}
 	//showing a selected category
 	if (!empty($_GET['category_id'])) {
-		$stmt = $pdo->prepare("SELECT COUNT(*) FROM products WHERE category_id = :id");
+		$stmt = $pdo->prepare("SELECT COUNT(*) FROM products WHERE category_id = :id AND NOT quantity = 0");
 		$stmt->execute([':id'=>$_GET['category_id']]);
 		$total_records = $stmt->fetchColumn();
 
 		$total_pages = ceil($total_records/$records_per_page);
 		$offsetnum = ($page_num - 1) * $records_per_page;
 
-		$stmt = $pdo->prepare("SELECT * FROM products WHERE category_id = :id");
+		$stmt = $pdo->prepare("SELECT * FROM products WHERE category_id = :id AND NOT quantity = 0");
 		$stmt->execute([':id'=>$_GET['category_id']]);
 		$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
  ?>
 	 <div class="container">
+		 <div class="">
+			<a href="logout.php"><button type="button" name="button" class="primary-btn" style="border:0;margin-bottom:5px">Logout</button></a>
+		 </div>
 		 <div class="row">
 			 <div class="col-xl-3 col-lg-4 col-md-5">
 				 <div class="sidebar-categories">

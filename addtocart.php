@@ -4,11 +4,6 @@
   require 'config/config.php';
   require 'config/common.php';
 
-  print"<pre>";
-  print_r($_POST);
-
-
-
   $id = $_POST['id'];
   $qty = $_POST['qty'];
 
