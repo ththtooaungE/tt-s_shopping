@@ -25,7 +25,7 @@
   }
 
  ?>
- 
+
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
@@ -48,7 +48,7 @@
 
                   <div class="form-group">
                     <input type="submit" class="btn btn-success" name="" value="Submit">
-                    <a href="index.php" type="button" class="btn btn-warning">Back</a>
+                    <a href="category.php" type="button" class="btn btn-warning">Back</a>
                   </div>
                 </form>
               </div>

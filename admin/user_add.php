@@ -11,7 +11,8 @@ if (empty($_SESSION['user_id']) || empty($_SESSION['logged_in']) || empty($_SESS
 include 'header.php';
 
 if ($_POST) {
-  if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['address']) || empty($_POST['phone']) || empty($_POST['role']) || strlen($_POST < 5)) {
+  if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['address']) ||
+   empty($_POST['phone']) || empty($_POST['role']) || strlen($_POST['password'] < 5) || !is_numeric($_POST['phone']) {
     if (empty($_POST['name'])) $nameError = 'This field can\'t be empty';
     if (empty($_POST['email'])) $emailError = 'This field can\'t be empty';
     if (empty($_POST['password'])) $passwordError = 'This field can\'t be empty';
@@ -19,6 +20,7 @@ if ($_POST) {
     if (empty($_POST['phone'])) $phoneError = 'This field can\'t be empty';
     if (empty($_POST['role'])) $roleError = 'This field can\'t be empty';
     if (!empty($_POST['password']) && strlen($_POST['password']) < 5) $passwordError = "The number of characters must be longer than 4!";
+    if (!empty($_POST['phone']) && !is_numeric($_POST['phone'])) $phoneError = 'This field must contain munbers!';
 
   } else {
     $stmt = $pdo->prepare("SELECT COUNT(email) FROM users WHERE email = :email");
